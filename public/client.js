@@ -1,4 +1,3 @@
-
 var cols, rows;
 var canvW, canvH;
 var camX, camY, camZ, camDX, camDY;
@@ -77,17 +76,22 @@ function draw() {
 }
 
 $(function() {
-  $("#sendFile").click(function() {
-    var file = $("#fileUpload")[0].files[0];
+  $("#submit").click(function() {
+    console.log('sending files')
+    var file = $("#file")[0].files[0];
+  
     console.log(file)
-    
-    var obj = {"File":file}
+    var formData = new FormData();
+    formData.append('file',file)
     $.ajax({
       type: "POST",
-      url: 'upload',
-      data: file,
+      url: 'uploadfile',
+      data: formData,
       processData: false,
       contentType: false,
+      success: function(res){
+        console.log(res);
+      }
     })
   })
 })

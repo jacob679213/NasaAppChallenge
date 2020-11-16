@@ -26,13 +26,14 @@ app.listen(port, () => {
 });
 
 //post request path for uploading file to server
-app.post("/uploadfile", upload.single("myFile"), (req, res, next) => {
-  
+app.post("/uploadfile", upload.single("file"), (req, res, next) => {
+  console.log('end point hit')
   if (!req.file) {
     res.send("please upload a file");
     return false;
   }
   const file = req.file;
+  console.log("file: "+file);
   //TODO:make this in native JS(replace python)
   // var data = spawn('python',['converter.py',file.filename])
   // data.stdout.on('data',function(data){
@@ -71,7 +72,7 @@ app.post("/uploadfile", upload.single("myFile"), (req, res, next) => {
     .on("end", () => {
       console.log("file processing completed");
       for (i in x) {
-        if (i % 7200 == 0) {
+        if (i % 10 == 0) {
           smallX.push(x[i]);
           smallY.push(y[i]);
           smallZ.push(z[i]);
@@ -81,10 +82,12 @@ app.post("/uploadfile", upload.single("myFile"), (req, res, next) => {
       console.log(smallX);
       console.log(smallY);
       console.log(smallZ);
-      console.log(smallSlope);S
-    });
+      console.log(smallSlope);
 
-  console.log(file);
-  res.redirect(".."); //redirect back to starting page (stop page rerouting)
-  res.end();
+      var data={x:smallX, y:smallY, z:smallZ,slope:smallSlope}
+
+      console.log(file);
+      res.send(data);
+      res.end();
+    });
 });
