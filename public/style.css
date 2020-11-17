@@ -31,15 +31,20 @@ nav a:hover {
 }
 
 #normalText {
-    margin-right: 130px;
+    margin-right: 125px;
 }
 
 #heightText {
-    margin-right: 45px;
+    margin-right: 40px;
 }
 
 #slopeText {
-    margin-right: 50px;
+    margin-right: 47px;
+}
+
+button {
+    background-color:whitesmoke;
+    width: 58px;
 }
 
 
