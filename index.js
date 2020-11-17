@@ -36,4 +36,13 @@ var finder = new PF.AStarFinder({
 var path = finder.findPath(10, 10, 50, 50, grid);
 console.log(path)
 res.send(path)
+  
+  function calcAzimuth(){
+  var lata = -89.232;
+  var latb = -89.2;
+  var longa = 54.794;
+  var longb = 120.69;
+let azang = Math.atan2((Math.sin(longb - longa) * Math.cos(latb)) , ((Math.cos(lata) * Math.sin(latb)) - (Math.sin(lata) * Math.cos(latb) * Math.cos(longb-longa))));
+  return azang;
+}
 })
