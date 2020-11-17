@@ -3,10 +3,15 @@ var cols, rows;
 var canvW, canvH;
 var camX, camY, camZ, camDX, camDY;
 var scl = 20;
+var img;
 
 var cam;
 
 var terrain = [];
+
+function preload(){
+  img = loadImage(fy20_adc_lunar_terrain_texture.png)
+}
 
 function setup() {
 
@@ -44,7 +49,7 @@ function setup() {
 
 function draw() {
   background(24);
-  fill(0, 204, 204);
+  texture(img);
   translate((-cols * scl) / 2, (-rows * scl) / 2);
   for (var y = 0; y < rows - 1; y++) {
     beginShape(TRIANGLE_STRIP);
